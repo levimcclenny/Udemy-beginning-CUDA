@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 __global__ void add(int *a, int *b, int *c) {
-    c[blockIdx.x] = a[blockIdx.x] + b[blockIdx.x];
+    c[threadIdx.x] = a[threadIdx.x] + b[threadIdx.x];
 }
 # define N 512
 int main(void) {
@@ -22,8 +22,8 @@ int main(void) {
     cudaMemcpy(d_a, a, size, cudaMemcpyHostToDevice);
     cudaMemcpy(d_b, b, size, cudaMemcpyHostToDevice);
 
-    // launch add kernel on GPU with N blocks
-    add<<<N,1>>>(d_a, d_b, d_c);
+    // launch add kernel on GPU with N threads
+    add<<<1,N>>>(d_a, d_b, d_c);
 
     // cp results to host
     cudaMemcpy(&c, d_c, size, cudaMemcpyDeviceToHost);
