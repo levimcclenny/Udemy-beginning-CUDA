@@ -19,7 +19,6 @@ int main(void) {
     int *d_a, *d_b, *d_c;
     int size = N * sizeof(int);
 
-
     cudaMalloc((void **)&d_a, size);
     cudaMalloc((void **)&d_b, size);
     cudaMalloc((void **)&d_c, size);
