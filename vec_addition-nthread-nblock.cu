@@ -12,6 +12,7 @@ void random_ints(int* a, int N)
         a[i] = rand();
 }
 
+
 # define N (2048*2048)
 # define THREADS_PER_BLOCK 512
 int main(void) {
